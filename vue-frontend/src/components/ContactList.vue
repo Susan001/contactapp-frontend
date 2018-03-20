@@ -10,85 +10,21 @@
             </router-link>
         </form>
         <div class="contacts">
-            <div class="card">
-                <img class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
+            <div class="card" v-for= "contact in contacts">
+                <img v-if= "contact.imageUrl != ''" class="card-img-top" v-bind:src="contact.imageUrl" alt="Card image cap">
+                <img v-else class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
                 <div class="card-body">
-                    <h2 class="card-title">Anne Born</h2>
-                    <p class="card-text">Mobile: 017652865022</p>
-                    <p class="card-text">Email: Kukuk</p>
-                    <p class="card-text">Facebook: 017652865022</p>
+                    <h2 class="card-title">{{contact.firstName}} {{contact.lastName}}</h2>
+                    <p class="card-text">Mobile: {{contact.mobile}}</p>
+                    <p class="card-text">Email: {{contact.email}}</p>
+                    <p class="card-text">Facebook: {{contact.facebook}}</p>
                 </div>
                 <div class="card-footer text-muted">
                     <button type="button" class="btn btn-primary"> <img src=" https://upload.wikimedia.org/wikipedia/commons/3/3e/White_pencil.png" width="20px" /> </button>
-                    <button type="button" class="btn btn-danger"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
+                    <button type="button" class="btn btn-danger" @click="deleteContact(contact._id)"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
+                </div>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Anne Born</h2>
-                    <p class="card-text">Mobile: 017652865022</p>
-                    <p class="card-text">Email: Kukuk</p>
-                    <p class="card-text">Facebook: 017652865022</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <button type="button" class="btn btn-primary"> <img src=" https://upload.wikimedia.org/wikipedia/commons/3/3e/White_pencil.png" width="20px" /> </button>
-                    <button type="button" class="btn btn-danger"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Anne Born</h2>
-                    <p class="card-text">Mobile: 017652865022</p>
-                    <p class="card-text">Email: Kukuk</p>
-                    <p class="card-text">Facebook: 017652865022</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <button type="button" class="btn btn-primary"> <img src=" https://upload.wikimedia.org/wikipedia/commons/3/3e/White_pencil.png" width="20px" /> </button>
-                    <button type="button" class="btn btn-danger"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Anne Born</h2>
-                    <p class="card-text">Mobile: 017652865022</p>
-                    <p class="card-text">Email: Kukuk</p>
-                    <p class="card-text">Facebook: 017652865022</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <button type="button" class="btn btn-primary"> <img src=" https://upload.wikimedia.org/wikipedia/commons/3/3e/White_pencil.png" width="20px" /> </button>
-                    <button type="button" class="btn btn-danger"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Anne Born</h2>
-                    <p class="card-text">Mobile: 017652865022</p>
-                    <p class="card-text">Email: Kukuk</p>
-                    <p class="card-text">Facebook: 017652865022</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <button type="button" class="btn btn-primary"> <img src=" https://upload.wikimedia.org/wikipedia/commons/3/3e/White_pencil.png" width="20px" /> </button>
-                    <button type="button" class="btn btn-danger"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" src="https://www.w3schools.com/howto/img_avatar.png" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Anne Born</h2>
-                    <p class="card-text">Mobile: 017652865022</p>
-                    <p class="card-text">Email: Kukuk</p>
-                    <p class="card-text">Facebook: 017652865022</p>
-                </div>
-                <div class="card-footer text-muted">
-                    <button type="button" class="btn btn-primary"> <img src=" https://upload.wikimedia.org/wikipedia/commons/3/3e/White_pencil.png" width="20px" /> </button>
-                    <button type="button" class="btn btn-danger"> <img src= "http://www.iconsplace.com/download/white-eraser-512.png" width="20px"/> </button>
-                </div>
-            </div>
-            
         </div>
         
     
@@ -96,13 +32,38 @@
 </template>
 
 <script>
-    import navigation from './Navbar';
-    export default {
-        name: 'ContactList',
-        components: {
-             navigation
+const myURL = "https://contactapp-susan001.c9users.io:8081/contacts/"
+import navigation from './Navbar';
+import axios from 'axios'
+export default {
+    name: 'ContactList',
+    components: {
+         navigation
+    }, data() {
+        return{
+            contacts: []
         }
-    };
+    }, mounted() {
+        axios.get(myURL + "laura").then((response) => {
+            console.log(response.data);
+            this.contacts = response.data;
+            
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, methods: {
+        deleteContact(key){
+            axios.delete(myURL +key).then((response) => {
+            console.log(response.data);
+            this.contacts = response.data;
+            
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+    
+    }
+};
 </script>
 
 <style scoped>
