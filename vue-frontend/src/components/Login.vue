@@ -14,7 +14,9 @@
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                     <button type="submit" class="btn btn-success centerButton">Login</button>
-                    <button class="btn btn-primary centerButton">Register</button>
+                    <router-link :to="{name: 'AddUser'}">
+                        <button class="btn btn-primary centerButton">Register</button>
+                    </router-link>
                 </form>
             </div>
         </div>
@@ -33,6 +35,7 @@
 <style scoped>
 .card{
     margin: auto;
+    margin-top:4em;
     width: 25em;
     text-align: left;
 }

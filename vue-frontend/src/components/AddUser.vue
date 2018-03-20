@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <div class="card">
             <div class="card-body">
                 <h1>Register</h1>
@@ -16,10 +15,13 @@
                     <div class="form-group">
                         <label >Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Password">
+                        <br>
                         <input type="password" class="form-control" id="password" placeholder="Repeat Password">
                     </div>
-                    <button type="submit" class="btn btn-success centerButton">Login</button>
-                    <button class="btn btn-primary centerButton">Register</button>
+                    <button type="submit" class="btn btn-success centerButton">Register</button>
+                    <router-link :to="{name: 'Login'}">
+                        <button class="btn btn-primary centerButton">I am already a User</button>
+                    </router-link>
                 </form>
             </div>
         </div>
@@ -38,6 +40,7 @@
 <style scoped>
 .card{
     margin: auto;
+    margin-top:4em;
     width: 25em;
     text-align: left;
 }

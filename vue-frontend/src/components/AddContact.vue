@@ -2,8 +2,8 @@
     <div>
         <navigation></navigation>
         <div class="card">
-            <h1>AddContact</h1>
             <div class="card-body">
+                <h3>Add Contact</h3>
                 <form>
                     <div class="form-group">
                         <label >ContactID *</label>
@@ -29,14 +29,22 @@
                         <label >Facebook </label>
                         <input class="form-control" id="facebook" placeholder="Facebook">
                     </div>
+                    <div class="form-group">
+                        <label >Image URL </label>
+                        <input class="form-control" id="image" placeholder="Image URL">
+                    </div>
                     <!--
                     <div class="form-group">
                         <label >Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Password">
                     </div>
                     -->
-                    <button type="submit" class="btn btn-success centerButton">Save</button>
-                    <button class="btn btn-primary centerButton">Close</button>
+                    <router-link :to="{name: 'ContactList'}">
+                        <button type="submit" class="btn btn-success centerButton">Save</button>
+                    </router-link>
+                    <router-link :to="{name:'ContactList'}">
+                        <button class="btn btn-primary centerButton">Close</button>
+                    </router-link>
                 </form>
             </div>
         </div>
@@ -60,10 +68,13 @@
     line-height:1em;
 }
 .card-body{
-    padding-top:0;
 }
 .card{
     text-align: left;
+    width:60%;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom: 1em;
 }
 lable {
     font-size: 0.5em;
