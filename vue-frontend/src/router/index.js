@@ -32,7 +32,7 @@ export default new Router({
       component: AddContact
     },
     {
-      path: '/editContact',
+      path: '/editContact/:contactId',
       name: 'EditContact',
       component: EditContact
     },
