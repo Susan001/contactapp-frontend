@@ -13,6 +13,7 @@
                         <label >Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Password" v-model="User.password">
                     </div>
+                    
                     <button type="submit" class="btn btn-success centerButton" @click="login" >Login</button>
                     <router-link :to="{name: 'AddUser'}">
                         <button class="btn btn-primary centerButton">Register</button>
@@ -48,22 +49,7 @@ export default {
                         alert("Correct Credentials");
                         const text = "nickname=" + realUser.nickname;
                         document.cookie = text;
-                        /**
-                        //Read cookie https://www.w3schools.com/js/js_cookies.asp
-                        const x = document.cookie;
-                        const userNickname = "";
-                        let name= "nickname"+ "=";
-                        var ca = x.split(';');
-                            for(var i = 0; i <ca.length; i++) {
-                                var c = ca[i];
-                                while (c.charAt(0) == ' ') {
-                                    c = c.substring(1);
-                                }
-                                if (c.indexOf(name) == 0) {
-                                    userNickname= c.substring(name.length, c.length);
-                                }
-                            }
-                            */
+                        
                     }
                     else {
                         alert("Wrong credentials");

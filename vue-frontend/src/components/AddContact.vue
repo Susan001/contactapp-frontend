@@ -1,7 +1,7 @@
 <template>
     <div>
         <navigation></navigation>
-        <div class="card">
+        <div v-if= "userNickname != ''" class="card"  >
             <div class="card-body">
                 <h3>Add Contact</h3>
                 <form>
@@ -33,12 +33,6 @@
                         <label >Image URL </label>
                         <input class="form-control" id="image" placeholder="Image URL" v-model="Contact.imageUrl">
                     </div>
-                    <!--
-                    <div class="form-group">
-                        <label >Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    -->
                     <router-link :to="{name: 'ContactList'}">
                         <button v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" type="submit" class="btn btn-success centerButton" @click= "addContact"  >Save</button>
                         <button v-else type="submit" class="btn btn-success centerButton" @click= "addContact" disabled>Save</button>
@@ -49,13 +43,13 @@
                 </form>
             </div>
         </div>
+        <div v-else > <br> <h1>Please log in!</h1></div>
     
    </div>
 </template>
 
 <script>
 const myURL = "https://contactapp-susan001.c9users.io:8081/contacts/";
-let userNickname = "";
 import navigation from './Navbar';
 import axios from 'axios';
 export default {
@@ -73,7 +67,8 @@ export default {
                 "email": "",
                 "facebook": "",
                 "imageUrl": ""
-            }
+            },
+            userNickname: ""
         };
     }, mounted() {
        //Read cookie https://www.w3schools.com/js/js_cookies.asp
@@ -86,14 +81,13 @@ export default {
                 c = c.substring(1);
             }
             if (c.indexOf(name) == 0) {
-                userNickname= c.substring(name.length, c.length);
+                this.userNickname= c.substring(name.length, c.length);
             }
         }
-        console.log(userNickname);
     }, methods: {
         addContact(){
             let newContact = {
-                userNickname: userNickname,
+                userNickname: this.userNickname,
                 contactId: this.Contact.contactId,
                 firstName: this.Contact.firstName,
                 lastName: this.Contact.lastName,
@@ -102,14 +96,15 @@ export default {
                 facebook: this.Contact.facebook,
                 imageUrl: this.Contact.imageUrl
             };
-            console.log(newContact);
             axios.post(myURL, newContact).then((response) => {
                 console.log(response);
+                location.reload();
             })
             .catch((error) => {
                 console.log(error);
+                location.reload();
             });
-            //window.location.reload();
+            
         }
     
     }

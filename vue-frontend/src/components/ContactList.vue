@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if= "userNickname != ''">
         <navigation></navigation>
         
         <form class="form-inline search-inline">
@@ -31,11 +31,15 @@
         
     
    </div>
+   <div v-else >
+       <navigation></navigation>
+       <br>
+       <h1>Please log in!</h1>
+   </div>
 </template>
 
 <script>
 const myURL = "https://contactapp-susan001.c9users.io:8081/contacts/";
-let userNickname = "";
 import navigation from './Navbar';
 import axios from 'axios';
 export default {
@@ -46,6 +50,7 @@ export default {
         return{
             contacts: [],
             search: "",
+            userNickname: ""
         };
     }, computed:{
         filterdContacts: function () {
@@ -53,9 +58,7 @@ export default {
             return contact.firstName.match(this.search);
           });
         }
-    
-        
-    }, mounted() {
+    },mounted() {
         
         //Read cookie https://www.w3schools.com/js/js_cookies.asp
         const x = document.cookie;
@@ -67,12 +70,12 @@ export default {
                 c = c.substring(1);
             }
             if (c.indexOf(name) == 0) {
-                userNickname= c.substring(name.length, c.length);
+                this.userNickname= c.substring(name.length, c.length);
             }
         }
         
-        axios.get(myURL + userNickname).then((response) => {
-            console.log(response.data);
+        axios.get(myURL + this.userNickname).then((response) => {
+            //console.log(response.data);
             this.contacts = response.data;
             
         }).catch((error) => {
@@ -86,9 +89,11 @@ export default {
             axios.delete(myURL +key).then((response) => {
             console.log(response.data);
             this.contacts = response.data;
+            location.reload();
             
             }).catch((error) => {
                 console.log(error);
+                location.reload();
             });
         }
     
