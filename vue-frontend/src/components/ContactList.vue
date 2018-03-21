@@ -35,6 +35,7 @@
 
 <script>
 const myURL = "https://contactapp-susan001.c9users.io:8081/contacts/";
+let userNickname = "";
 import navigation from './Navbar';
 import axios from 'axios';
 export default {
@@ -44,7 +45,7 @@ export default {
     }, data() {
         return{
             contacts: [],
-            search: ""
+            search: "",
         };
     }, computed:{
         filterdContacts: function () {
@@ -55,13 +56,31 @@ export default {
     
         
     }, mounted() {
-        axios.get(myURL + "laura").then((response) => {
+        
+        //Read cookie https://www.w3schools.com/js/js_cookies.asp
+        const x = document.cookie;
+        let name= "nickname"+ "=";
+        var ca = x.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                userNickname= c.substring(name.length, c.length);
+            }
+        }
+        
+        axios.get(myURL + userNickname).then((response) => {
             console.log(response.data);
             this.contacts = response.data;
             
         }).catch((error) => {
             console.log(error);
         });
+        
+        
+        
     }, methods: {
         deleteContact(key){
             axios.delete(myURL +key).then((response) => {
@@ -71,10 +90,6 @@ export default {
             }).catch((error) => {
                 console.log(error);
             });
-            window.location.reload();
-        },
-        editContact(key){
-            
         }
     
     }

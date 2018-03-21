@@ -43,11 +43,27 @@ export default {
             
             axios.get(myURL + this.User.nickname).then((response) => {
                 const realUser = response.data[0];
-                console.log(response.data);
                 if(response.data.length>0){
                     if((this.User.nickname == realUser.nickname) && (this.User.password == realUser.password)){
                         alert("Correct Credentials");
-                        
+                        const text = "nickname=" + realUser.nickname;
+                        document.cookie = text;
+                        /**
+                        //Read cookie https://www.w3schools.com/js/js_cookies.asp
+                        const x = document.cookie;
+                        const userNickname = "";
+                        let name= "nickname"+ "=";
+                        var ca = x.split(';');
+                            for(var i = 0; i <ca.length; i++) {
+                                var c = ca[i];
+                                while (c.charAt(0) == ' ') {
+                                    c = c.substring(1);
+                                }
+                                if (c.indexOf(name) == 0) {
+                                    userNickname= c.substring(name.length, c.length);
+                                }
+                            }
+                            */
                     }
                     else {
                         alert("Wrong credentials");

@@ -47,11 +47,9 @@
     
    </div>
 </template>
-this.$route.params.userId
 
 <script>
 const myURL = "https://contactapp-susan001.c9users.io:8081/contacts/";
-const userNickname = "laura";
 import navigation from './Navbar';
 import axios from 'axios';
 export default {
@@ -61,7 +59,6 @@ export default {
     },data() {
         return{
             Contact: {
-                "userNickname": userNickname,
                 "contactId": "",
                 "firstName": "",
                 "lastName": "",
@@ -83,7 +80,6 @@ export default {
     }, methods: {
         editContact(key){
             let updatedContact = {
-                userNickname: this.Contact.userNickname,
                 contactId: this.Contact.contactId,
                 firstName: this.Contact.firstName,
                 lastName: this.Contact.lastName,
