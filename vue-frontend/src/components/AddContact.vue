@@ -40,7 +40,8 @@
                     </div>
                     -->
                     <router-link :to="{name: 'ContactList'}">
-                        <button type="submit" class="btn btn-success centerButton" @click= "addContact" >Save</button>
+                        <button v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" type="submit" class="btn btn-success centerButton" @click= "addContact"  >Save</button>
+                        <button v-else type="submit" class="btn btn-success centerButton" @click= "addContact" disabled>Save</button>
                     </router-link>
                     <router-link :to="{name:'ContactList'}">
                         <button class="btn btn-primary centerButton">Close</button>
@@ -102,7 +103,7 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-            window.location.reload();
+            //window.location.reload();
         }
     
     }

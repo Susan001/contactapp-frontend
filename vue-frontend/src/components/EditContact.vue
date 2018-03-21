@@ -35,7 +35,8 @@
                         <input class="form-control" id="image" placeholder="Image URL" v-model="Contact.imageUrl">
                     </div>
                     <router-link :to="{name:'ContactList'}">
-                        <button @click="editContact" type="submit" class="btn btn-success centerButton">Save</button>
+                        <button  v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" @click="editContact" type="submit" class="btn btn-success centerButton">Save</button>
+                        <button  v-else @click="editContact" type="submit" class="btn btn-success centerButton" disabled>Save</button>
                     </router-link>
                     <router-link :to="{name:'ContactList'}">
                         <button class="btn btn-primary centerButton">Close</button>
@@ -98,7 +99,6 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-            window.location.reload();
         }
     
     }
