@@ -1,0 +1,10 @@
+1. Open a new terminal and go to /frontend/vue-frontend and run "npm run dev" to start the frontend
+2. Open a new terminal and go to /restapi and run "./mongod" to start the database
+3. Open a new terminal and go to /restapi and change the backends port (export PORT=8081).
+    Start the backend with the command "./bin/www"
+
+
+
+Existing user:
+nickname: amilabell
+password: waterpark

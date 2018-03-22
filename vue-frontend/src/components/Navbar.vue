@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav class="navbar navbar-light" style="background-color: #9e9e9e ;" >
-            <span v-if="userNickname != '' " class="navbar-brand mb-0 h1">Hallo {{userNickname}} :) !</span>
+            <span v-if="userNickname != '' " class="navbar-brand mb-0 h1">Hello {{userNickname}} :) !</span>
             <span v-else class="navbar-brand mb-0 h1"> </span>
             <router-link :to="{name: 'Login'}">
                 <span class="navbar-brand" >

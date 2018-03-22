@@ -14,7 +14,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Password" v-model="User.password">
                     </div>
                     
-                    <button type="submit" class="btn btn-success centerButton" @click="login" >Login</button>
+                    <button  class="btn btn-success centerButton" @click="login" >Login</button>
                     <router-link :to="{name: 'AddUser'}">
                         <button class="btn btn-primary centerButton">Register</button>
                     </router-link>
@@ -46,9 +46,9 @@ export default {
                 const realUser = response.data[0];
                 if(response.data.length>0){
                     if((this.User.nickname == realUser.nickname) && (this.User.password == realUser.password)){
-                        alert("Correct Credentials");
                         const text = "nickname=" + realUser.nickname;
                         document.cookie = text;
+                        this.$router.push('/contactList');
                         
                     }
                     else {

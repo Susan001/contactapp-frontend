@@ -4,7 +4,6 @@
         
         <form class="form-inline search-inline">
             <input class="form-control" type="search" placeholder="Search" v-model= "search" style="width:85%" >
-            <!--<button class="btn btn-secondary" type="submit" >Search</button> -->
             <router-link :to="{name: 'AddContact'}">
                 <button class="btn btn-secondary" >Add Contact</button>
             </router-link>

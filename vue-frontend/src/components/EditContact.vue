@@ -34,10 +34,8 @@
                         <!-- v-if= "contact.facebook != ''" -->
                         <input class="form-control" id="image" placeholder="Image URL" v-model="Contact.imageUrl">
                     </div>
-                    <router-link :to="{name:'ContactList'}">
-                        <button  v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" @click="editContact" type="submit" class="btn btn-success centerButton">Save</button>
-                        <button  v-else @click="editContact" type="submit" class="btn btn-success centerButton" disabled>Save</button>
-                    </router-link>
+                    <button  v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" @click="editContact" type="submit" class="btn btn-success centerButton">Save</button>
+                    <button  v-else @click="editContact" type="submit" class="btn btn-success centerButton" disabled>Save</button>
                     <router-link :to="{name:'ContactList'}">
                         <button class="btn btn-primary centerButton">Close</button>
                     </router-link>
@@ -102,11 +100,11 @@ export default {
             };
             axios.put(myURL + this.$route.params.contactId, updatedContact).then((response) => {
                 console.log(response);
-                location.reload();
+                this.$router.push('/contactList');
             })
             .catch((error) => {
                 console.log(error);
-                location.reload();
+                this.$router.push('/contactList');
             });
         }
     

@@ -33,10 +33,8 @@
                         <label >Image URL </label>
                         <input class="form-control" id="image" placeholder="Image URL" v-model="Contact.imageUrl">
                     </div>
-                    <router-link :to="{name: 'ContactList'}">
-                        <button v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" type="submit" class="btn btn-success centerButton" @click= "addContact"  >Save</button>
-                        <button v-else type="submit" class="btn btn-success centerButton" @click= "addContact" disabled>Save</button>
-                    </router-link>
+                    <button v-if= "(Contact.contactId != '') && (Contact.lastName !='') && (Contact.firstName !='') && (Contact.mobile !='')" type="submit" class="btn btn-success centerButton" @click= "addContact"  >Save</button>
+                    <button v-else type="submit" class="btn btn-success centerButton" @click= "addContact" disabled>Save</button>
                     <router-link :to="{name:'ContactList'}">
                         <button class="btn btn-primary centerButton">Close</button>
                     </router-link>
@@ -98,11 +96,11 @@ export default {
             };
             axios.post(myURL, newContact).then((response) => {
                 console.log(response);
-                location.reload();
+                this.$router.push('/contactList');
             })
             .catch((error) => {
                 console.log(error);
-                location.reload();
+                this.$router.push('/contactList');
             });
             
         }
